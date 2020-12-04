@@ -21,12 +21,20 @@ int main() {
 		}
 		char_array.push_back(temp_vec);
 	}
-	for (int i=0; i < char_array.size(); i++){
-		vector<char> temp_vec = char_array.back();
-		char_array.pop_back();
-		for (int j=0; j < temp_vec.size(); j++) {
-			cout << temp_vec[j];
+	for (int i=0; i < char_array.size(); i++) {
+		for (int j=0; j < char_array[i].size(); j++) {
+			cout << char_array[i][j];
 		}
 		cout << endl;
 	}
+	int x_pos = 0;
+	int tree_counter = 0;
+	for (int i = 0; i < char_array.size(); i++) {
+		if (char_array[i][x_pos % char_array[i].size()] == '#') {
+			tree_counter++;
+		}
+		x_pos += 3;
+	}
+	cout << tree_counter << endl;
+
 }
