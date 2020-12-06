@@ -6,12 +6,11 @@ using namespace std;
 
 int main() {
   string input_string;
-  string big_string;
-  int valid_counter = 0;
   int all_yes_counter = 0;
   while (true) {
     bool first = true;
     unordered_set<char> input_set;
+    string erase_string = "";
     int yes_counter = 0;
     bool erased = false;
     while (getline(cin, input_string)) {
@@ -19,18 +18,21 @@ int main() {
         break;
       }
       if (!first) {
-        for (const auto& elem:input_set) {
-          if (input_string.find(elem) == string::npos) {
-            while (input_set.count(elem)) {
-              input_set.erase(elem);
-            }
+        for (auto& elem : input_set) {
+          if (input_string.find(elem) > input_string.size()) {
+            erase_string += elem;
             erased = true;
           }
         }
+        for (char& character: erase_string) {
+	      	while (input_set.count(character)) {
+	      		input_set.erase(character);
+	      	}
+      	}
       }
       else {
-        for (char & i : input_string) {
-          input_set.emplace(i);
+        for (char & elem : input_string) {
+          input_set.insert(elem);
         }
         first = false;
       }
