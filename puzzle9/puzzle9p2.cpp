@@ -12,6 +12,7 @@ int main() {
 	}
 
 	bool valid = false;
+	int sum_target;
 	for (int i = 25; i < numbers.size(); i++) {
 		valid = false;
 		for (int j = i - 25; j < i; j++) {
@@ -22,8 +23,27 @@ int main() {
 			}
 		}
 		if (valid == false) {
+			sum_target = numbers[i];
 			cout << numbers[i] << endl;
-			return 0;
+		}
+	}
+
+	for (int i = 0; i < numbers.size(); i++){
+		int smallest = numbers[i];
+		int largest = numbers[i];
+		int sum = smallest;
+		int j = i+1;
+		while (sum < sum_target && j < numbers.size()) {
+			sum += numbers[j];
+			if (numbers[j] > largest) largest = numbers[j];
+			if (numbers[j] < smallest) smallest = numbers[j];
+			if (sum == sum_target) {
+				cout << "smallest: " << smallest << endl;
+				cout << "largest: " << largest << endl;
+				cout << "sum: " << sum << endl;
+				cout << smallest + largest << endl;
+			}
+			j++;
 		}
 	}
 }
